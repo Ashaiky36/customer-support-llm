@@ -1,0 +1,127 @@
+# ============================================
+# Python
+# ============================================
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+eggs/
+
+# ============================================
+# Environment & Configuration
+# ============================================
+
+.env
+.env.local
+.env.*.local
+*.env
+
+# ============================================
+# IDE & Editor
+# ============================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# Operating System
+# ============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ============================================
+# Project-Specific
+# ============================================
+
+# ChromaDB persistent storage
+chroma_db/
+chroma_data/
+*.chroma/
+
+# Redis data
+dump.rdb
+redis-data/
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Scraped data cache
+scraped_data/
+cache/
+*.cache
+
+# Logs
+logs/
+*.log
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Docker
+.docker/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+
+# ============================================
+# Sensitive / Credentials
+# ============================================
+
+credentials.json
+service-account.json
+*.pem
+*.key
+secrets.yaml
+config.local.yaml

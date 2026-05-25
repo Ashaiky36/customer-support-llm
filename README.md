@@ -1,89 +1,86 @@
-# 🤖 AI Customer Support Agent (customer_support_llm)
+# AI Customer Support Agent — Production-Grade RAG System
 
-An end-to-end, production-style AI customer support agent for e-commerce. Built from scratch using an incremental "stack-upon-stack" approach — starting from a raw LLM call and progressively adding RAG, memory, intent classification, order tracking, returns processing, live web scraping, and deployment.
+An end-to-end AI-powered customer support system designed for e-commerce platforms. The agent handles product inquiries, order tracking, returns processing, and live data retrieval through a modular, incrementally-built architecture. Developed using Retrieval-Augmented Generation (RAG), intent classification, and multi-tenant deployment patterns.
 
-> **Status:** 🚧 In active development (25-day build plan)
-
----
-
-## 📸 Demo
-
-*Coming soon — end-to-end demo video after Day 25*
+> **Status:** Under active development. Following a structured 25-day build pipeline.
 
 ---
 
-## ✨ Features
+## Overview
 
-- **RAG-powered product Q&A** — Answers product questions using a vector knowledge base (ingredients, usage, side effects)
-- **Conversational memory** — Maintains context across multi-turn dialogues
-- **Intent classification** — Detects `track_order`, `return`, `refund`, `product_query` intents
-- **Order tracking & returns** — Queries a live database and processes returns with verification
-- **Live web scraping** — Fetches real-time prices, discounts, and coupons from the store website
-- **Fallback to human** — Escalates to email when the bot can't handle a query
-- **Chat widget embed** — Drop-in JavaScript widget for any e-commerce store
-- **Multi-tenancy** — Supports multiple stores with isolated knowledge bases
-- **Admin dashboard** — Store owners can upload docs, view analytics, and manage the bot
-- **100% local-first** — Runs entirely on Ollama (Mistral) during development — zero API costs
+Modern e-commerce operations require scalable, intelligent support systems capable of handling high volumes of customer interactions without sacrificing accuracy or reliability. This project implements a complete AI support agent that integrates natural language understanding, structured knowledge retrieval, transactional database access, and live web scraping into a unified, deployable system.
+
+The development follows a disciplined incremental methodology: each phase introduces a single new capability onto a stable foundation, ensuring thorough understanding of every component before integration.
 
 ---
 
-## 🛠 Tech Stack
+## Core Capabilities
 
-| Layer | Technology |
+- **Retrieval-Augmented Generation (RAG)** — Product knowledge base ingestion, chunking, embedding, vector storage, and semantic retrieval for accurate, source-grounded responses
+- **Conversational State Management** — Multi-turn dialogue memory with persistent session storage
+- **Intent Classification** — Structured extraction of user intents including product inquiry, order tracking, return initiation, and refund requests
+- **Transactional Operations** — SQL database querying for order status verification, return eligibility checks, and delivery tracking
+- **Live Data Enrichment** — Web scraping pipeline for real-time product pricing, availability, discounts, and coupon retrieval
+- **Human Escalation Protocol** — Automated email fallback when queries exceed the agent's confidence threshold or operational scope
+- **Embeddable Interface** — Standalone JavaScript widget for integration into existing e-commerce storefronts
+- **Multi-Tenant Architecture** — Isolated vector stores and configurations per store, enabling SaaS deployment
+- **Observability Dashboard** — Administrative interface for conversation monitoring, analytics review, and knowledge base management
+- **Local-First Development** — All LLM inference performed locally via Ollama, eliminating external API dependency during development
+
+---
+
+## Technical Architecture
+
+| Component | Implementation |
 |:--|:--|
-| **LLM** | Ollama + Mistral 7B (local, free) |
-| **Orchestration** | LangChain |
-| **Vector Store** | ChromaDB |
-| **Embeddings** | OllamaEmbeddings |
-| **Memory** | Redis |
-| **Backend API** | FastAPI |
-| **Frontend** | Streamlit + Custom JS Widget |
-| **Database** | SQLite |
-| **Scraping** | BeautifulSoup4 + Playwright |
-| **Containerization** | Docker |
-| **Monitoring** | Custom logging + Streamlit dashboard |
+| Language Model | Ollama (Mistral 7B) — local inference |
+| Orchestration Framework | LangChain |
+| Vector Database | ChromaDB |
+| Embedding Model | OllamaEmbeddings |
+| Session Store | Redis |
+| API Layer | FastAPI |
+| Frontend Interface | Streamlit / Custom JavaScript Widget |
+| Transactional Database | SQLite |
+| Web Scraping | BeautifulSoup4 / Playwright |
+| Containerization | Docker |
+| Observability | Structured logging + Custom Streamlit dashboard |
 
 ---
 
-## 📅 25-Day Build Plan
+## Incremental Development Pipeline
 
-This project follows a strict incremental build philosophy: **one feature per day, each building on the last.**
+The system is constructed over 25 sequential development phases, organized into six logical stages:
 
-| Phase | Days | Focus |
+| Stage | Days | Scope |
 |:--|:--|:--|
-| **Foundation** | 1–5 | LLM setup, LangChain, RAG pipeline |
-| **Intelligence** | 6–9 | Memory, citations, intent classification |
-| **Actions** | 10–13 | Database access, order tracking, returns |
-| **Live Data** | 14–16 | Web scraping, live info injection |
-| **Production** | 17–22 | Email fallback, FastAPI, Redis, widget, Docker |
-| **Polish** | 23–25 | Monitoring, admin dashboard, testing |
+| Foundation | 1–5 | LLM integration, prompt engineering, document processing, vector storage, RAG pipeline |
+| Intelligence | 6–9 | Conversational memory, source citation, confidence thresholds, intent classification |
+| Transactional Layer | 10–13 | Database schema design, SQL generation from natural language, order tracking, return verification |
+| Live Data Integration | 14–16 | Static and dynamic web scraping, real-time context injection into RAG pipeline |
+| Production Hardening | 17–22 | API development, persistent sessions, widget embedding, multi-tenancy, containerization |
+| Operational Readiness | 23–25 | Structured logging, cost tracking, administrative dashboard, end-to-end testing |
 
-📋 **[Interactive Checklist](https://github.com/Ashaiky36/customer-support-llm/AICSA_CHECKLIST.html)** — Track your progress with persistent checkboxes and a progress bar.
+A detailed interactive checklist with progress tracking is available in the repository.
 
 ---
 
-## 🚀 Quick Start
+## Installation
 
 ### Prerequisites
 
-- Python 3.10+
-- [Ollama](https://ollama.com/) installed
-- Mistral model pulled: `ollama pull mistral`
-- Redis (for Day 19+)
+- Python 3.10 or later
+- Ollama installed and running locally
+- Mistral model: `ollama pull mistral`
+- Redis server (required from Day 19 onward)
 
-### Installation
+### Setup
 
 ```bash
-# Clone the repo
 git clone https://github.com/Ashaiky36/customer_support_llm.git
-cd customer-support-llm
+cd ai-support-agent
 
-# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate       # Windows: venv\Scripts\activate
 
-# Install dependencies
 pip install -r requirements.txt
-
-# Pull the model
 ollama pull mistral

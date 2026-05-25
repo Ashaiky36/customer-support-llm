@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25-Day AI Customer Support Agent - Daily Checklist</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --text-secondary: #636e72;
+            --border: #e0e0e0;
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+            --success: #00b894;
+            --danger: #d63031;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --radius: 10px;
+            --transition: 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .header .subtitle {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            margin-top: 20px;
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .progress-stats .done {
+            color: var(--success);
+            font-size: 1.4em;
+        }
+
+        .progress-stats .total {
+            color: var(--text-secondary);
+        }
+
+        .progress-stats .percentage {
+            color: var(--accent);
+            margin-left: 10px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 20px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+        }
+
+        .btn-reset {
+            background: none;
+            border: 1.5px solid var(--danger);
+            color: var(--danger);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all var(--transition);
+            margin-top: 6px;
+        }
+
+        .btn-reset:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Day Cards */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid transparent;
+            transition: all var(--transition);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .day-card.completed {
+            border-left-color: var(--success);
+            opacity: 0.75;
+        }
+
+        .day-card.completed .day-title {
+            text-decoration: line-through;
+            text-decoration-color: var(--success);
+            text-decoration-thickness: 2px;
+        }
+
+        .day-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transform: translateY(-1px);
+        }
+
+        /* Checkbox */
+        .checkbox-wrapper {
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-wrapper label {
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+            border: 2.5px solid #d1d8e0;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            transition: all var(--transition);
+            background: white;
+        }
+
+        .checkbox-wrapper label:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(108,92,231,0.1);
+        }
+
+        .checkbox-wrapper input:checked + label {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .checkbox-wrapper input:checked + label::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 3px;
+            width: 7px;
+            height: 13px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Day Content */
+        .day-content {
+            flex: 1;
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .day-number {
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            font-size: 0.8em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .day-card.completed .day-number {
+            background: var(--success);
+        }
+
+        .day-title {
+            font-weight: 700;
+            font-size: 1.05em;
+            color: var(--text);
+        }
+
+        .day-description {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .header {
+                padding: 20px 16px;
+                position: static;
+            }
+            .header h1 {
+                font-size: 1.3em;
+            }
+            .day-card {
+                padding: 14px 16px;
+                gap: 12px;
+            }
+            .day-title {
+                font-size: 0.95em;
+            }
+            .day-description {
+                font-size: 0.82em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                max-width: 100%;
+            }
+            .header {
+                box-shadow: none;
+                border: 2px solid #000;
+                position: static;
+            }
+            .day-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+            .btn-reset {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>📋 AI Customer Support Agent</h1>
+        <p class="subtitle">25-Day Incremental Build Plan · 6 hours per day</p>
+
+        <div class="progress-section">
+            <div class="progress-stats">
+                <span class="done" id="doneCount">0</span>
+                <span class="total">/ 25 days completed</span>
+                <span class="percentage" id="percentDisplay">(0%)</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <button class="btn-reset" onclick="resetAll()">↺ Reset All Progress</button>
+        </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="checklist" id="checklist"></div>
+
+    <script>
+        // ============ DATA ============
+        const days = [
+            {
+                day: 1,
+                title: "Local LLM \"Hello World\"",
+                desc: "Install Python 3.10+, create a virtual env, install ollama and pull llama3.2:3b. Write a tiny chat.py that sends a raw HTTP request to the local Ollama API and prints the reply. Goal: make sure the LLM speaks before adding any library complexity."
+            },
+            {
+                day: 2,
+                title: "LangChain basics + Prompt templates",
+                desc: "Install langchain and langchain-ollama. Use ChatOllama with a PromptTemplate that asks the model to act like a helpful customer support agent. Run 5 test prompts and verify it stays in character."
+            },
+            {
+                day: 3,
+                title: "Data loading & text splitting",
+                desc: "Get a sample product manual PDF (or a beauty product ingredient list). Install pypdf, LangChain document loaders. Load the PDF, split it into chunks using RecursiveCharacterTextSplitter. Print the chunks and their metadata."
+            },
+            {
+                day: 4,
+                title: "Embeddings & vector store (ChromaDB)",
+                desc: "Install chromadb. Use OllamaEmbeddings to embed all chunks. Store them in a Chroma collection. Write a script that queries the collection with a simple similarity search (\"side effects of retinol\") and prints the top 3 chunks."
+            },
+            {
+                day: 5,
+                title: "Your first RAG chain",
+                desc: "Combine the retriever from Day 4 with the LLM in a LangChain RetrievalQA chain. Ask 10 product questions. Verify the answers come from the document. Print the source documents alongside each answer."
+            },
+            {
+                day: 6,
+                title: "Conversational memory",
+                desc: "Add ConversationBufferWindowMemory to the RAG chain. Test a multi‑turn dialogue: \"Do you have the Night Cream?\" → \"What's the price?\" The bot must remember the product."
+            },
+            {
+                day: 7,
+                title: "Streamlit UI (chat interface)",
+                desc: "Install streamlit. Wrap the conversational RAG chain in a web app. Use st.chat_message and st.session_state.messages to keep conversation history. This gives you a real \"chat widget\" feel."
+            },
+            {
+                day: 8,
+                title: "Citations & fallback \"I don't know\"",
+                desc: "Modify the chain to return source documents. Show them in the UI. Add a rule: if the retriever similarity score is below a threshold, the bot says \"I'm not confident about that. Would you like to speak to a human agent?\""
+            },
+            {
+                day: 9,
+                title: "Intent classification (structured JSON output)",
+                desc: "Learn Pydantic and with_structured_output. Create a LangChain chain that extracts structured intents from a user message: e.g., {\"intent\": \"track_order\", \"order_id\": \"12345\"}. Test with 20 varied user inputs. No actions yet, just classification."
+            },
+            {
+                day: 10,
+                title: "Mock database & order tracking",
+                desc: "Create a local SQLite database with an orders table (order_id, status, delivery_date, items). Write Python functions to query it. Hardcode 5 sample orders."
+            },
+            {
+                day: 11,
+                title: "LLM‑powered database querying (Agentic RAG)",
+                desc: "Build a LangChain create_sql_query_chain that converts a natural language question (\"Where is my order 12345?\") into an SQL query, executes it, and uses the LLM to turn the result into a friendly answer."
+            },
+            {
+                day: 12,
+                title: "Context‑aware action replies",
+                desc: "Combine intent classification + database access. When a user asks to track an order, the system detects the intent, extracts the order ID, queries the DB, and the LLM responds with something like: \"Your order #12345 (Blue Denim) has been shipped and will be delivered by tomorrow.\""
+            },
+            {
+                day: 13,
+                title: "Return / exchange intent & verification",
+                desc: "Add a new intent: \"return\". The bot asks for the order ID, queries the DB to verify eligibility (e.g., within 30 days), then asks a confirmation question: \"I can initiate a return for the Denim. Shall I proceed?\" No real action yet—just a confirmed state."
+            },
+            {
+                day: 14,
+                title: "Scraping foundation (static site)",
+                desc: "Install beautifulsoup4 and requests. Write a standalone scraper that fetches a real e‑commerce product page (or a local HTML mock) and extracts: product name, price, and availability. Cache the result in a JSON file."
+            },
+            {
+                day: 15,
+                title: "Live info injection into RAG",
+                desc: "Modify the RAG pipeline to accept \"live context\". If the user asks \"What's the current price of the Night Cream?\" and it's not in the static knowledge base, the system calls the scraper, feeds the price into the prompt as [LIVE DATA], and answers with a disclaimer."
+            },
+            {
+                day: 16,
+                title: "Scraping coupons & dynamic data",
+                desc: "Extend the scraper to handle a JavaScript‑heavy page if needed (use playwright). Scrape a \"/coupons\" page. Feed coupon info into the LLM only when the user asks for discounts."
+            },
+            {
+                day: 17,
+                title: "Fallback email system",
+                desc: "Install smtplib or a service like Resend. Add logic: if the bot fails to understand a query twice, or the user says \"speak to a human\", it collects their email and sends a summary of the chat to a support mailbox."
+            },
+            {
+                day: 18,
+                title: "FastAPI backend",
+                desc: "Install fastapi and uvicorn. Create a POST /chat endpoint that accepts {\"message\": \"…\"} and returns the AI response. Move all your logic into this API. Test with requests or Postman."
+            },
+            {
+                day: 19,
+                title: "Persistent conversations (Redis)",
+                desc: "Install redis and redis-server. Replace in‑memory ConversationBufferWindowMemory with a Redis‑backed memory so conversations survive server restarts. Key format: session_id:store_id."
+            },
+            {
+                day: 20,
+                title: "Simple chat widget embed",
+                desc: "Build a minimal HTML/JS widget (a floating button). When clicked, it opens a chat iframe that connects to your FastAPI backend. Test by embedding it into a static product page."
+            },
+            {
+                day: 21,
+                title: "Multi‑tenancy (per‑store knowledge bases)",
+                desc: "Modify the system to accept a store_id parameter. Each store gets its own Chroma collection and its own scraped data. The widget passes store_id via a data attribute."
+            },
+            {
+                day: 22,
+                title: "Docker & environment variables",
+                desc: "Write a Dockerfile and docker-compose.yml (FastAPI + Redis + Chroma). Move all config (model name, paths) to a .env file. Test full system with docker compose up."
+            },
+            {
+                day: 23,
+                title: "Logging, monitoring & cost tracking",
+                desc: "Add structured Python logging to every endpoint. Log: session ID, query, intent, response, token count, latency. Create a simple Streamlit admin dashboard that shows these logs."
+            },
+            {
+                day: 24,
+                title: "Admin dashboard & store onboarding",
+                desc: "Build a minimal admin UI (Streamlit) where a store owner can upload their product PDFs, add their website URL for scraping, and see their chat analytics."
+            },
+            {
+                day: 25,
+                title: "End‑to‑end testing & polish",
+                desc: "Write a 10‑step test script (using pytest) that simulates: product question → order tracking → return initiation → fallback email. Record a 3‑minute demo video of the full flow. Write the README."
+            }
+        ];
+
+        // ============ STATE MANAGEMENT ============
+        const STORAGE_KEY = 'ai-agent-25day-checklist';
+
+        function loadState() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    return {};
+                }
+            }
+            return {};
+        }
+
+        function saveState(state) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        // ============ RENDER ============
+        function renderChecklist() {
+            const state = loadState();
+            const container = document.getElementById('checklist');
+            container.innerHTML = '';
+
+            days.forEach((day) => {
+                const isChecked = state[day.day] === true;
+
+                const card = document.createElement('div');
+                card.className = `day-card${isChecked ? ' completed' : ''}`;
+
+                card.innerHTML = `
+                    <div class="checkbox-wrapper">
+                        <input 
+                            type="checkbox" 
+                            id="day-${day.day}" 
+                            ${isChecked ? 'checked' : ''}
+                            onchange="toggleDay(${day.day})"
+                        >
+                        <label for="day-${day.day}"></label>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-header">
+                            <span class="day-number">Day ${day.day}</span>
+                            <span class="day-title">${day.title}</span>
+                        </div>
+                        <p class="day-description">${day.desc}</p>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            updateProgress();
+        }
+
+        function toggleDay(dayNumber) {
+            const state = loadState();
+            state[dayNumber] = !state[dayNumber];
+            saveState(state);
+            renderChecklist();
+        }
+
+        function updateProgress() {
+            const state = loadState();
+            const total = days.length;
+            const done = Object.values(state).filter(v => v === true).length;
+            const percent = total > 0 ? Math.round((done / total) * 100) : 0;
+
+            document.getElementById('doneCount').textContent = done;
+            document.getElementById('percentDisplay').textContent = `(${percent}%)`;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+        }
+
+        function resetAll() {
+            if (confirm('Are you sure you want to reset ALL progress? This cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                renderChecklist();
+            }
+        }
+
+        // ============ INIT ============
+        renderChecklist();
+    </script>
+
+</body>
+</html>
