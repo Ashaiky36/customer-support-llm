@@ -1,0 +1,47 @@
+[
+  {
+    "chunk_id": 0,
+    "text": "Product: Night Repair Cream\nPrice: $48.00\nCategory: Skincare / Night Treatment\nIngredients: Water, Glycerin, Niacinamide, Retinol (0.3%), Hyaluronic Acid, Vitamin E, Squalane, Ceramide NP, Peptide Complex, Green Tea Extract\nUsage Instructions: Apply a pea-sized amount to clean face and neck before bed. Avoid eye area. Use sunscreen during the day as retinol increases sun sensitivity. Start with every other night for the first two weeks.\nSide Effects: May cause mild redness, dryness, or peeling during the first 2-3 weeks as skin adjusts. Do not use if pregnant or breastfeeding. Discontinue if severe irritation, burning, or rash occurs.\nSkin Types: Suitable for normal, combination, and oily skin. Not recommended for extremely sensitive or eczema-prone skin.\nAvailability: In stock. Usually ships within 1-2 business days.",
+    "char_count": 829,
+    "meta_data": {
+      "sources": "data/sample_products.txt",
+      "start_index": 0
+    }
+  },
+  {
+    "chunk_id": 1,
+    "text": "---\n\nProduct: Vitamin C Brightening Serum\nPrice: $36.00\nCategory: Skincare / Serum\nIngredients: Water, L-Ascorbic Acid (15%), Vitamin E, Ferulic Acid, Hyaluronic Acid, Aloe Vera Extract, Jojoba Oil\nUsage Instructions: Apply 3-4 drops to clean, dry skin every morning. Follow with moisturizer and broad-spectrum sunscreen (SPF 30+). Allow 2-3 minutes to absorb before applying other products.\nSide Effects: May cause slight tingling upon application. Patch test on inner arm before first use. Do not combine with retinol products in the same routine. Discontinue if persistent redness occurs.\nSkin Types: Suitable for all skin types. Particularly beneficial for dull, uneven, or hyperpigmented skin.\nAvailability: In stock.",
+    "char_count": 722,
+    "meta_data": {
+      "sources": "data/sample_products.txt",
+      "start_index": 831
+    }
+  },
+  {
+    "chunk_id": 2,
+    "text": "---\n\nProduct: Soothing Hydrating Toner\nPrice: $24.00\nCategory: Skincare / Toner\nIngredients: Rose Water, Witch Hazel (Alcohol-Free), Hyaluronic Acid, Niacinamide, Panthenol (Vitamin B5), Allantoin, Chamomile Extract\nUsage Instructions: Apply to cotton pad and sweep gently across face and neck after cleansing, morning and evening. Can also be applied by patting directly onto skin with clean hands. Follow with serum and moisturizer.\nSide Effects: Generally well-tolerated by all skin types. Discontinue if irritation occurs.\nSkin Types: Suitable for all skin types including sensitive skin. Alcohol-free and fragrance-free.\nAvailability: Low stock. Order soon.",
+    "char_count": 662,
+    "meta_data": {
+      "sources": "data/sample_products.txt",
+      "start_index": 1555
+    }
+  },
+  {
+    "chunk_id": 3,
+    "text": "---\n\nReturn Policy:\n- Returns accepted within 30 days of delivery date\n- Items must be unused, unopened, and in original packaging\n- Return shipping is free for defective, damaged, or incorrect items\n- For change-of-mind returns, customer pays return shipping\n- Refunds processed within 5-7 business days after warehouse receives and inspects the return\n- Original shipping charges are non-refundable\n\n---\n\nShipping Policy:\n- Free standard shipping on orders over $50\n- Standard shipping (5-7 business days): $4.99\n- Express shipping (2-3 business days): $12.99\n- Overnight shipping (next business day): $24.99\n- International shipping available to select countries (rates calculated at checkout)\n- Orders placed before 2 PM EST ship same business day",
+    "char_count": 751,
+    "meta_data": {
+      "sources": "data/sample_products.txt",
+      "start_index": 2219
+    }
+  },
+  {
+    "chunk_id": 4,
+    "text": "---\n\nFrequently Asked Questions:\nQ: Can I use Night Repair Cream and Vitamin C Serum together?\nA: Yes, but not at the same time. Use Vitamin C Serum in the morning and Night Repair Cream in the evening. This prevents potential irritation from combining retinol and vitamin C simultaneously.\n\n---\n\nQ: How long does one bottle of serum last?\nA: With daily use as directed, one 30ml bottle typically lasts 2-3 months.\n\n---\n\nQ: Are your products cruelty-free?\nA: Yes, all our products are cruelty-free. We do not test on animals at any stage of production.\n\n\n---\n\nQ: Do you offer samples?\nA: We offer a sample kit with mini sizes of our top 5 products for $12.99, which includes a $12.99 credit toward your next full-size purchase.",
+    "char_count": 727,
+    "meta_data": {
+      "sources": "data/sample_products.txt",
+      "start_index": 2972
+    }
+  }
+]
